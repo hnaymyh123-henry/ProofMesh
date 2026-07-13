@@ -15,7 +15,7 @@ Built for the **Gonka: AI for Society** track of the AI³ Growth Hackathon 2026.
 - downloadable social Proof Card
 - curated offline demo case for reliable presentations
 
-The complete product plan and Demo Day narrative live in [`docs/PRODUCT_PLAN.md`](docs/PRODUCT_PLAN.md).
+The complete product plan lives in [`docs/PRODUCT_PLAN.md`](docs/PRODUCT_PLAN.md), and the one-take recording script lives in [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md).
 
 ## Run locally
 
