@@ -46,6 +46,11 @@ function clamp(value: number, min = 0, max = 100) {
   return Math.min(max, Math.max(min, Math.round(value)));
 }
 
+function scoreOrFallback(value: unknown, fallback = 50) {
+  const numeric = Number(value);
+  return clamp(Number.isFinite(numeric) ? numeric : fallback);
+}
+
 function cleanText(value: string, limit = 12_000) {
   return value.replace(/\u0000/g, "").replace(/\s+/g, " ").trim().slice(0, limit);
 }
@@ -212,7 +217,7 @@ function asAgent(
     model,
     requestId: call.id,
     conclusion: cleanText(payload.conclusion, 700),
-    confidence: clamp(Number(payload.confidence) || 50),
+    confidence: scoreOrFallback(payload.confidence),
     keyPoints: (payload.keyPoints ?? []).map((point) => cleanText(point, 220)).slice(0, 4),
     latencyMs: call.latencyMs,
   };
@@ -303,13 +308,13 @@ export async function POST(request: Request) {
       `${sharedPacket}\n\nINVESTIGATOR:\n${investigator.conclusion}\n${investigator.keyPoints.join("\n")}\n\nCHALLENGER:\n${challenger.conclusion}\n${challenger.keyPoints.join("\n")}\n\nReturn JSON only.`,
     );
     const consensus = extractJson<ConsensusPayload>(consensusCall.text);
-    const score = clamp(Number(consensus.score) || 50);
+    const score = scoreOrFallback(consensus.score);
     const consensusAgent: AgentAnalysis = {
       role: "Consensus",
       model: "Gonka cross-model consensus",
       requestId: consensusCall.id,
       conclusion: cleanText(consensus.summary, 700),
-      confidence: clamp(Number(consensus.confidence) || 50),
+      confidence: scoreOrFallback(consensus.confidence),
       keyPoints: [
         `Investigator confidence: ${investigator.confidence}%`,
         `Challenger confidence: ${challenger.confidence}%`,
@@ -323,7 +328,7 @@ export async function POST(request: Request) {
       claim: normalizedClaim,
       verdict: consensus.verdict ?? "Disputed",
       score,
-      confidence: clamp(Number(consensus.confidence) || 50),
+      confidence: scoreOrFallback(consensus.confidence),
       summary: cleanText(consensus.summary, 1_200),
       atomicClaims: (consensus.atomicClaims ?? []).slice(0, 5).map((item) => ({
         claim: cleanText(item.claim, 320),

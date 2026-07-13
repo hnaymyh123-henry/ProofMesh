@@ -69,6 +69,8 @@ test("keeps the live Gonka integration and social asset in the deliverable", asy
   assert.match(route, /MiniMaxAI\/MiniMax-M2\.7/);
   assert.match(route, /GONKA_API_KEY/);
   assert.match(route, /Google News/);
+  assert.match(route, /Number\.isFinite\(numeric\)/);
+  assert.doesNotMatch(route, /Number\([^)]*\)\s*\|\|\s*50/);
   assert.match(workspace, /Download Proof Card/);
   assert.match(workspace, /What would change this verdict\?/);
   assert.match(layout, /og\.png/);
