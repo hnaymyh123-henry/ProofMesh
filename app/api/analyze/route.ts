@@ -156,6 +156,50 @@ async function searchNews(query: string): Promise<EvidenceItem[]> {
   }));
 }
 
+async function searchReference(query: string): Promise<EvidenceItem[]> {
+  const params = new URLSearchParams({
+    action: "query",
+    generator: "search",
+    gsrsearch: query,
+    gsrlimit: "4",
+    prop: "extracts|info",
+    exintro: "1",
+    explaintext: "1",
+    inprop: "url",
+    format: "json",
+    origin: "*",
+  });
+  const response = await fetch(`https://en.wikipedia.org/w/api.php?${params}`, {
+    headers: { "User-Agent": "ProofMesh/1.0 evidence research" },
+  });
+  if (!response.ok) return [];
+
+  const payload = (await response.json()) as {
+    query?: {
+      pages?: Record<string, {
+        index?: number;
+        title?: string;
+        extract?: string;
+        fullurl?: string;
+      }>;
+    };
+  };
+
+  return Object.values(payload.query?.pages ?? {})
+    .sort((left, right) => (left.index ?? 99) - (right.index ?? 99))
+    .filter((page) => page.title && page.fullurl && page.extract)
+    .slice(0, 3)
+    .map((page, index) => ({
+      id: `reference-${index}-${Math.abs(query.length * 17 + index)}`,
+      title: page.title ?? "Reference context",
+      publisher: "Wikipedia",
+      url: page.fullurl ?? "",
+      snippet: cleanText(page.extract ?? "", 420),
+      stance: "context" as const,
+      credibility: 68,
+    }));
+}
+
 async function fetchSubmittedPage(input: string): Promise<EvidenceItem[]> {
   let parsed: URL;
   try {
@@ -253,8 +297,16 @@ export async function POST(request: Request) {
     const submittedEvidence =
       body.kind === "url" || body.kind === "x" ? await fetchSubmittedPage(content) : [];
     const queries = (decomposition.searchQueries ?? []).slice(0, 2);
-    const newsGroups = await Promise.all(queries.map((query) => searchNews(cleanText(query, 180))));
-    const evidence = [...submittedEvidence, ...newsGroups.flat()]
+    const evidenceGroups = await Promise.all(
+      queries.flatMap((query) => {
+        const cleanedQuery = cleanText(query, 180);
+        return [
+          searchNews(cleanedQuery).catch(() => []),
+          searchReference(cleanedQuery).catch(() => []),
+        ];
+      }),
+    );
+    const evidence = [...submittedEvidence, ...evidenceGroups.flat()]
       .filter((item, index, all) => item.url && all.findIndex((other) => other.url === item.url) === index)
       .slice(0, 8);
 
