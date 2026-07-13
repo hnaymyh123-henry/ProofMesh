@@ -28,7 +28,7 @@ test("server-renders the finished ProofMesh product", async () => {
   assert.match(html, /<title>ProofMesh — Auditable truth for the open web<\/title>/i);
   assert.match(html, /Don&#x27;t trust the answer/);
   assert.match(html, /What should we investigate\?/);
-  assert.match(html, /Gonka network/);
+  assert.match(html, /Gonka live/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
@@ -74,5 +74,8 @@ test("keeps the live Gonka integration and social asset in the deliverable", asy
   assert.doesNotMatch(route, /Number\([^)]*\)\s*\|\|\s*50/);
   assert.match(workspace, /Download Proof Card/);
   assert.match(workspace, /What would change this verdict\?/);
+  assert.match(workspace, /type AppView = "home" \| "processing" \| "result"/);
+  assert.match(workspace, /processing-screen/);
+  assert.match(workspace, /Case report sections/);
   assert.match(layout, /og\.png/);
 });

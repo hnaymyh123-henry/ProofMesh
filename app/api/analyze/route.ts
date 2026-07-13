@@ -125,6 +125,8 @@ function decodeXml(value: string) {
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, " ")
+    .replace(/&#x27;/g, "'")
     .replace(/&#39;/g, "'")
     .replace(/<[^>]+>/g, "")
     .trim();

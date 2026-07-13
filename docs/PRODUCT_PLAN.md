@@ -2,93 +2,99 @@
 
 ## Product thesis
 
-ProofMesh turns a disputed online claim into a living, auditable case file. It does not hide uncertainty behind a single AI answer: two independent Gonka models investigate the same claim from opposing positions, compare live evidence, and publish a traceable verdict with request IDs.
+ProofMesh turns a disputed online claim into a living, auditable case file. Two independent Gonka models investigate the same evidence from opposing positions, then a consensus pass publishes a traceable verdict with visible request IDs.
+
+The core product insight is that trust comes from seeing the verification process, not from receiving a more confident answer.
 
 ## Primary audience
 
 1. People who encounter viral claims and need a fast, understandable answer.
-2. Community moderators and DAO operators who need to explain moderation decisions.
-3. Journalists and researchers who need a reproducible starting point for verification.
+2. Community moderators and DAO operators who must explain decisions.
+3. Journalists and researchers who need a reproducible verification starting point.
 
 ## Core promise
 
-Paste a URL, X post, text claim, or image. In under two minutes, receive:
+Paste a URL, X post, text claim, or image. Receive:
 
 - atomic claims extracted from the input;
-- a structured case for and against;
+- an adversarial case for and against;
 - a 0-100 Truth Score with calibrated uncertainty;
 - a source-diversity view and evidence trail;
-- Gonka model and request IDs for every inference;
-- a downloadable Proof Card for sharing.
+- model and request IDs for every inference;
+- explicit conditions that would reverse the verdict;
+- a downloadable Proof Card.
 
-## Differentiation
+## Product experience: three acts
+
+### Act 1 - Input workspace
+
+The opening screen acts like a verification terminal, not a landing page. The user chooses an input type, submits a claim, and presses Enter. The value proposition, safety promise, and primary action all fit in one viewport.
+
+### Act 2 - Agent workspace
+
+The application changes state completely. A live orchestration view shows Claim Mapper, Investigator, Challenger, and Consensus Judge moving through four visible stages. Activity lines, status changes, signals, and elapsed time make the work legible while the real pipeline runs.
+
+### Act 3 - Result workspace
+
+The result opens automatically as a single-screen app. The verdict, score, and claim remain anchored on the left. Overview, Evidence, Agents, and Audit panels switch locally on the right, so the user explores the case without scrolling through a long report.
+
+## Differentiation and sell points
 
 ### Evidence Duel
 
-Two different models receive the same evidence but different mandates. The Investigator builds the strongest supported case; the Challenger searches for contradictions, missing context, and alternative explanations.
+Two models receive the same evidence but opposing mandates. The Investigator builds the strongest supported interpretation; the Challenger searches for contradictions, missing context, and unsupported leaps.
+
+### Visible Agent orchestration
+
+The process page makes multi-agent work understandable. It is both a product explanation and a meaningful live status surface, replacing a generic loading spinner.
 
 ### Reversible verdicts
 
-Every report includes “What would change this verdict?” so the product communicates falsifiability instead of artificial certainty.
+Every case states what new evidence would change the result. This communicates falsifiability instead of artificial certainty.
 
-### Truth Timeline
+### Auditable inference ledger
 
-Case files are designed to be rechecked as evidence changes. The MVP renders the evidence milestones and score history; persistent scheduled rechecks are a post-hackathon extension.
+Participating models, confidence values, request IDs, the network, timestamps, and the case ID remain visible inside one audit panel.
+
+### Source provenance and diversity
+
+Evidence items keep publisher, date, excerpt, stance, and destination URL. A source-diversity meter warns when apparent agreement comes from repeated or dependent sources.
 
 ### Proof Card
 
-Each result can be exported as a branded image containing the claim, score, verdict, timestamp, source count, and audit identifier.
+Each result exports as a branded image containing the claim, score, verdict, timestamp, source count, and audit identifier.
 
-### Gonka-native auditability
+## Analysis pipeline
 
-All AI inference flows through GonkaRouter. The UI exposes the participating model names and request IDs rather than hiding them in logs.
-
-## MVP scope
-
-### Inputs
-
-- URL
-- X post URL
-- Free-form text claim
-- Image upload
-
-### Analysis pipeline
-
-1. Normalize input and isolate potentially untrusted instructions.
+1. Normalize the input and isolate potentially untrusted instructions.
 2. Kimi K2.6 decomposes the content into atomic claims and search queries.
-3. The server collects the submitted page plus relevant public web evidence.
+3. The server collects the submitted page plus public web and reference evidence.
 4. Kimi K2.6 acts as Investigator.
 5. MiniMax M2.7 acts as Challenger.
 6. A final consensus pass produces the score, verdict, uncertainty, and reversal conditions.
-7. The report displays all inference request IDs.
+7. The result workspace displays all inference request IDs.
 
-### Demo-safe behavior
+## Demo-safe behavior
 
-The application contains one curated sample case so the full interaction can be recorded even when an external service is temporarily unavailable. Live results are visually distinguished from the sample simulation.
-
-## Hero demo story
-
-1. Open ProofMesh and load the sample claim.
-2. Start the verification and watch the pipeline advance through claim mapping, evidence retrieval, model debate, and consensus.
-3. Reveal the Truth Score and the model disagreement.
-4. Open the evidence trail and show the Gonka request IDs.
-5. Highlight “What would change this verdict?”
-6. Download the Proof Card.
+The application contains one curated case so the complete interaction remains available during a temporary external outage. Live results and the simulation are labeled differently.
 
 ## Success criteria
 
 - A first-time user understands the value within 10 seconds.
-- The full sample flow completes without setup.
-- A live Gonka key enables real two-model inference.
-- The result includes a score, verdict, evidence, model disagreement, and audit IDs.
-- The experience is usable on desktop and mobile.
-- The project builds and deploys as a public website.
+- Enter starts the verification without another setup step.
+- The multi-agent process is visually understandable while the pipeline runs.
+- A live Gonka key enables real dual-model inference.
+- The result exposes score, evidence, disagreement, reversal conditions, and audit IDs.
+- The main desktop flow uses three application states instead of a long document.
+- The experience remains usable on mobile with local panel scrolling.
+- The project builds and deploys as a working private demo.
 
 ## Post-hackathon path
 
 - persistent public case URLs;
 - automatic re-verification and score-change alerts;
-- X/Discord/Telegram bot integrations;
+- X, Discord, and Telegram bot integrations;
 - team workspaces and moderation queues;
-- API access for publishers and community platforms;
+- source-quality policies by organization;
+- API access for publishers and communities;
 - cryptographic report anchoring and signed Proof Cards.
