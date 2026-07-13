@@ -1,21 +1,36 @@
 # ProofMesh
 
-ProofMesh turns a disputed online claim into a living, auditable case file. Two different models investigate the same evidence from opposing positions, then a consensus step publishes a 0–100 Truth Score, uncertainty, evidence trail, reversal conditions, and visible Gonka request IDs.
+ProofMesh turns a disputed online claim into a living, auditable case file. Two different models investigate the same evidence from opposing positions, then a consensus step publishes a 0-100 Truth Score, uncertainty, evidence trail, reversal conditions, and visible Gonka request IDs.
 
-Built for the **Gonka: AI for Society** track of the AI³ Growth Hackathon 2026.
+Built for the **Gonka: AI for Society** track of the AI3 Growth Hackathon 2026.
+
+## Product experience
+
+ProofMesh uses a three-stage web app flow:
+
+1. **Input workspace** - submit an article, X post, text claim, or image and press Enter.
+2. **Agent workspace** - watch Claim Mapper, Investigator, Challenger, and Consensus work through the live pipeline.
+3. **Result workspace** - inspect Overview, Evidence, Agents, and Audit panels without scrolling through a long report.
 
 ## Product highlights
 
 - URL, X post, text, and image inputs
 - atomic claim decomposition
 - Kimi K2.6 Investigator vs. MiniMax M2.7 Challenger
-- public-web evidence collection
+- public-web and reference evidence collection
 - auditable request IDs and model provenance
 - Truth Timeline and explicit reversal conditions
 - downloadable social Proof Card
 - curated offline demo case for reliable presentations
 
-The complete product plan lives in [`docs/PRODUCT_PLAN.md`](docs/PRODUCT_PLAN.md), and the one-take recording script lives in [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md).
+The complete product plan lives in [`docs/PRODUCT_PLAN.md`](docs/PRODUCT_PLAN.md), and the one-take narration script lives in [`docs/DEMO_SCRIPT.md`](docs/DEMO_SCRIPT.md).
+
+## Demo deliverables
+
+- Private live app: <https://proofmesh-audit.ym2752columbia.chatgpt.site>
+- Recorded real-model walkthrough: [`output/playwright/ProofMesh-Demo.mp4`](output/playwright/ProofMesh-Demo.mp4)
+
+The recorded walkthrough uses a real GonkaRouter run and shows the complete input, Agent, result, evidence, model, audit, and Proof Card flow.
 
 ## Run locally
 
@@ -51,10 +66,10 @@ npm run lint
 
 ## Architecture
 
-- `app/TruthWorkspace.tsx` — interactive investigation and report experience
-- `app/api/analyze/route.ts` — GonkaRouter orchestration and evidence acquisition
-- `app/lib/demo-case.ts` — curated, presentation-safe sample
-- `public/og.png` — branded social preview card
-- `.openai/hosting.json` — Sites deployment binding
+- `app/TruthWorkspace.tsx` - three-stage interactive verification workspace
+- `app/api/analyze/route.ts` - GonkaRouter orchestration and evidence acquisition
+- `app/lib/demo-case.ts` - curated presentation-safe sample
+- `public/og.png` - branded social preview card
+- `.openai/hosting.json` - Sites deployment binding
 
 All live AI inference goes through GonkaRouter. The API key remains server-side.

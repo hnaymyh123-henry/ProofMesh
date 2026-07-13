@@ -43,3 +43,7 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+/.playwright-cli/
+/output/playwright/*
+!/output/playwright/ProofMesh-Demo.mp4
+!/output/playwright/record-flow.js
