@@ -29,6 +29,7 @@ The complete product plan lives in [`docs/PRODUCT_PLAN.md`](docs/PRODUCT_PLAN.md
 
 - Private live app: <https://proofmesh-audit.ym2752columbia.chatgpt.site>
 - Recorded real-model walkthrough: [`output/playwright/ProofMesh-Demo.mp4`](output/playwright/ProofMesh-Demo.mp4)
+- Submission-ready walkthrough with English guide captions: [`output/playwright/ProofMesh-Demo-EN.mp4`](output/playwright/ProofMesh-Demo-EN.mp4)
 
 The recorded walkthrough uses a real GonkaRouter run and shows the complete input, Agent, result, evidence, model, audit, and Proof Card flow.
 

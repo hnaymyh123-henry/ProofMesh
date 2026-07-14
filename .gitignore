@@ -46,4 +46,6 @@ next-env.d.ts
 /.playwright-cli/
 /output/playwright/*
 !/output/playwright/ProofMesh-Demo.mp4
+!/output/playwright/ProofMesh-Demo-EN.mp4
+!/output/playwright/ProofMesh-Demo-EN.ass
 !/output/playwright/record-flow.js

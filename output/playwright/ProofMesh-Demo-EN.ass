@@ -1,0 +1,26 @@
+[Script Info]
+Title: ProofMesh Demo - English Guide Captions
+ScriptType: v4.00+
+PlayResX: 1440
+PlayResY: 900
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Guide,Arial,27,&H00FFFFFF,&H00FFFFFF,&H00101211,&H00101211,-1,0,0,0,100,100,1.2,0,3,14,0,2,30,30,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.70,0:00:07.00,Guide,,0,0,0,,{\fad(180,180)}START WITH ONE VERIFIABLE CLAIM
+Dialogue: 0,0:00:07.20,0:00:16.50,Guide,,0,0,0,,{\fad(180,180)}PRESS ENTER TO OPEN A LIVE CASE
+Dialogue: 0,0:00:17.70,0:00:23.50,Guide,,0,0,0,,{\fad(180,180)}1  KIMI MAPS THE CLAIM
+Dialogue: 0,0:00:23.70,0:00:28.50,Guide,,0,0,0,,{\fad(180,180)}2  KIMI RETRIEVES INDEPENDENT EVIDENCE
+Dialogue: 0,0:00:28.70,0:00:34.00,Guide,,0,0,0,,{\fad(180,180)}3  MINIMAX CHALLENGES BOTH SIDES
+Dialogue: 0,0:00:34.20,0:00:58.20,Guide,,0,0,0,,{\fad(180,180)}4  CONSENSUS CALIBRATES THE FINAL VERDICT
+Dialogue: 0,0:00:59.00,0:01:04.20,Guide,,0,0,0,,{\fad(180,180)}VERDICT, TRUTH SCORE, AND DECISION SCOPE
+Dialogue: 0,0:01:04.30,0:01:09.20,Guide,,0,0,0,,{\fad(180,180)}SOURCE-BACKED EVIDENCE WITH PROVENANCE
+Dialogue: 0,0:01:09.30,0:01:14.20,Guide,,0,0,0,,{\fad(180,180)}COMPARE INDEPENDENT AGENT REASONING
+Dialogue: 0,0:01:14.30,0:01:19.50,Guide,,0,0,0,,{\fad(180,180)}REPLAY THE COMPLETE AUDIT TRAIL
+Dialogue: 0,0:01:20.00,0:01:29.50,Guide,,0,0,0,,{\fad(180,180)}EXPORT A SHAREABLE PROOF CARD
+Dialogue: 0,0:01:29.70,0:01:34.20,Guide,,0,0,0,,{\fad(180,180)}PROOFMESH - INSPECT THE CASE, NOT JUST THE ANSWER
